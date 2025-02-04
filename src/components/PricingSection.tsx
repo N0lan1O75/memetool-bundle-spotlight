@@ -12,7 +12,7 @@ export const PricingSection = () => {
             Simple Pricing
           </h2>
           <p className="text-gray-400">
-            Access all our tools with a single license
+            Get access to all bundle and rug tools
           </p>
         </div>
         <Card className="max-w-md mx-auto p-8 bg-background/50 border border-gray-800">
@@ -24,10 +24,10 @@ export const PricingSection = () => {
           </div>
           <ul className="space-y-4 mb-8">
             {[
-              "Access to all tools",
-              "Free updates",
-              "Priority support",
-              "Real-time analytics",
+              "Bundle Creation Tools",
+              "Rug Mechanism Builder",
+              "Analytics Dashboard",
+              "Priority Support",
             ].map((feature) => (
               <li key={feature} className="flex items-center text-gray-300">
                 <Check className="h-5 w-5 text-primary mr-2" />
