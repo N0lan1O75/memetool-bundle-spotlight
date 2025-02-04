@@ -1,8 +1,28 @@
-import { Check } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 
 export const PricingSection = () => {
+  const { toast } = useToast();
+  const solAddress = "494Lzck5PvzNMKYRReLPBhDCthjk91SCUCg6voDmH3sA";
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(solAddress);
+      toast({
+        title: "Address copied!",
+        description: "The Solana address has been copied to your clipboard.",
+      });
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try copying the address manually.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="py-20 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-secondary/20 animate-gradient-y"></div>
@@ -35,9 +55,20 @@ export const PricingSection = () => {
               </li>
             ))}
           </ul>
-          <Button className="w-full bg-primary text-background hover:bg-primary/90">
-            Get License
-          </Button>
+          <div className="space-y-4">
+            <div className="p-3 bg-gray-900/50 rounded-lg break-all text-sm text-gray-300">
+              {solAddress}
+              <button
+                onClick={copyToClipboard}
+                className="ml-2 inline-flex items-center text-primary hover:text-primary/80"
+              >
+                <Copy className="h-4 w-4" />
+              </button>
+            </div>
+            <Button className="w-full bg-primary text-background hover:bg-primary/90">
+              Get License
+            </Button>
+          </div>
         </Card>
       </div>
     </div>
