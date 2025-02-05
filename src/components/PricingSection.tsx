@@ -28,13 +28,12 @@ export const PricingSection = () => {
           seconds: Math.floor((difference / 1000) % 60),
         });
       } else {
-        setIsDiscountActive(false);
-        return () => clearInterval(timer);
+        // Reset timer to initial values instead of stopping
+        setTimeLeft({ hours: 24, minutes: 0, seconds: 0 });
       }
     };
 
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -71,12 +70,20 @@ export const PricingSection = () => {
         <Card className="max-w-md mx-auto p-8 bg-background/50 border border-gray-800">
           {isDiscountActive && (
             <div className="mb-8 text-center">
-              <div className="bg-primary/10 rounded-lg p-4 mb-4">
-                <p className="text-primary font-bold mb-2">Limited Time Offer!</p>
-                <div className="flex justify-center gap-2 font-mono text-lg">
-                  <span>{formatTime(timeLeft.hours)}h</span>:
-                  <span>{formatTime(timeLeft.minutes)}m</span>:
-                  <span>{formatTime(timeLeft.seconds)}s</span>
+              <div className="bg-primary/10 rounded-lg p-4 mb-4 animate-pulse">
+                <p className="text-primary font-bold mb-2 text-lg">🔥 Limited Time Offer! 🔥</p>
+                <div className="flex justify-center gap-2 font-mono text-2xl">
+                  <div className="bg-primary/20 rounded px-3 py-1">
+                    <span className="text-primary animate-bounce">{formatTime(timeLeft.hours)}h</span>
+                  </div>
+                  <span className="text-primary">:</span>
+                  <div className="bg-primary/20 rounded px-3 py-1">
+                    <span className="text-primary animate-bounce">{formatTime(timeLeft.minutes)}m</span>
+                  </div>
+                  <span className="text-primary">:</span>
+                  <div className="bg-primary/20 rounded px-3 py-1">
+                    <span className="text-primary animate-bounce">{formatTime(timeLeft.seconds)}s</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,7 +93,7 @@ export const PricingSection = () => {
               {isDiscountActive ? (
                 <>
                   <span className="text-gray-400 line-through text-2xl">{originalPrice} SOL</span>
-                  <span>{discountedPrice} SOL</span>
+                  <span className="animate-scale-in">{discountedPrice} SOL</span>
                 </>
               ) : (
                 <span>{originalPrice} SOL</span>
