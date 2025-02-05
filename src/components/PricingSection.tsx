@@ -17,25 +17,23 @@ export const PricingSection = () => {
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
-      // Set end time to 24 hours from when the component first mounts
       const endTime = now + (timeLeft.hours * 3600000 + timeLeft.minutes * 60000 + timeLeft.seconds * 1000);
       const difference = endTime - now;
 
       if (difference > 0) {
         setTimeLeft({
           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / (1000 * 60)) % 60),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
       } else {
-        // Reset timer to initial values instead of stopping
         setTimeLeft({ hours: 24, minutes: 0, seconds: 0 });
       }
     };
 
     const timer = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [timeLeft]);
 
   const copyToClipboard = async () => {
     try {
@@ -67,22 +65,27 @@ export const PricingSection = () => {
             Get access to all bundle and rug tools
           </p>
         </div>
-        <Card className="max-w-md mx-auto p-8 bg-background/50 border border-gray-800">
+        <Card className="max-w-md mx-auto p-8 bg-background/50 backdrop-blur-sm border border-gray-800 hover:border-primary/50 transition-all duration-500">
           {isDiscountActive && (
-            <div className="mb-8 text-center">
-              <div className="bg-primary/10 rounded-lg p-4 mb-4 animate-pulse">
-                <p className="text-primary font-bold mb-2 text-lg">🔥 Limited Time Offer! 🔥</p>
-                <div className="flex justify-center gap-2 font-mono text-2xl">
-                  <div className="bg-primary/20 rounded px-3 py-1">
-                    <span className="text-primary animate-bounce">{formatTime(timeLeft.hours)}h</span>
+            <div className="mb-8 text-center transform hover:scale-105 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-6 mb-4 shadow-lg">
+                <p className="text-primary font-bold mb-4 text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                  🔥 Limited Time Offer! 🔥
+                </p>
+                <div className="flex justify-center gap-4 font-mono text-3xl">
+                  <div className="bg-background/80 rounded-lg px-4 py-2 shadow-xl">
+                    <span className="text-primary animate-pulse">{formatTime(timeLeft.hours)}</span>
+                    <span className="text-sm text-primary/70">h</span>
                   </div>
-                  <span className="text-primary">:</span>
-                  <div className="bg-primary/20 rounded px-3 py-1">
-                    <span className="text-primary animate-bounce">{formatTime(timeLeft.minutes)}m</span>
+                  <span className="text-primary self-center">:</span>
+                  <div className="bg-background/80 rounded-lg px-4 py-2 shadow-xl">
+                    <span className="text-primary animate-pulse">{formatTime(timeLeft.minutes)}</span>
+                    <span className="text-sm text-primary/70">m</span>
                   </div>
-                  <span className="text-primary">:</span>
-                  <div className="bg-primary/20 rounded px-3 py-1">
-                    <span className="text-primary animate-bounce">{formatTime(timeLeft.seconds)}s</span>
+                  <span className="text-primary self-center">:</span>
+                  <div className="bg-background/80 rounded-lg px-4 py-2 shadow-xl">
+                    <span className="text-primary animate-pulse">{formatTime(timeLeft.seconds)}</span>
+                    <span className="text-sm text-primary/70">s</span>
                   </div>
                 </div>
               </div>
@@ -93,10 +96,16 @@ export const PricingSection = () => {
               {isDiscountActive ? (
                 <>
                   <span className="text-gray-400 line-through text-2xl">{originalPrice} SOL</span>
-                  <span className="animate-scale-in">{discountedPrice} SOL</span>
+                  <span className="animate-scale-in flex items-center gap-2">
+                    {discountedPrice} 
+                    <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="SOL" className="w-8 h-8 inline animate-spin-slow" />
+                  </span>
                 </>
               ) : (
-                <span>{originalPrice} SOL</span>
+                <span className="flex items-center gap-2">
+                  {originalPrice}
+                  <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="SOL" className="w-8 h-8 inline animate-spin-slow" />
+                </span>
               )}
             </div>
             <div className="text-sm text-gray-400">Lifetime License</div>
@@ -108,7 +117,7 @@ export const PricingSection = () => {
               "Analytics Dashboard",
               "Priority Support",
             ].map((feature) => (
-              <li key={feature} className="flex items-center text-gray-300">
+              <li key={feature} className="flex items-center text-gray-300 hover:text-primary transition-colors duration-300">
                 <Check className="h-5 w-5 text-primary mr-2" />
                 {feature}
               </li>
@@ -116,7 +125,7 @@ export const PricingSection = () => {
           </ul>
           <div className="space-y-4">
             <div className="flex flex-col items-center justify-center mb-6">
-              <div className="bg-white p-4 rounded-lg mb-4">
+              <div className="bg-white p-4 rounded-lg mb-4 shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
                 <QRCodeSVG
                   value={`solana:${solAddress}`}
                   size={200}
@@ -124,18 +133,22 @@ export const PricingSection = () => {
                   includeMargin={true}
                 />
               </div>
-              <p className="text-sm text-gray-400 mb-4">Scan to pay with Solana</p>
+              <p className="text-sm text-gray-400 mb-4 flex items-center gap-2">
+                Scan to pay with 
+                <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="Solana" className="w-5 h-5 inline" />
+                Solana
+              </p>
             </div>
-            <div className="p-3 bg-gray-900/50 rounded-lg break-all text-sm text-gray-300">
+            <div className="p-3 bg-gray-900/50 backdrop-blur-sm rounded-lg break-all text-sm text-gray-300 hover:bg-gray-900/70 transition-colors duration-300">
               {solAddress}
               <button
                 onClick={copyToClipboard}
-                className="ml-2 inline-flex items-center text-primary hover:text-primary/80"
+                className="ml-2 inline-flex items-center text-primary hover:text-primary/80 transition-colors duration-300"
               >
                 <Copy className="h-4 w-4" />
               </button>
             </div>
-            <Button className="w-full bg-primary text-background hover:bg-primary/90">
+            <Button className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
               Get License
             </Button>
           </div>
