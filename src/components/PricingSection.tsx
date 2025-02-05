@@ -1,12 +1,42 @@
+
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { QRCodeSVG } from "qrcode.react";
+import { useEffect, useState } from "react";
 
 export const PricingSection = () => {
   const { toast } = useToast();
   const solAddress = "494Lzck5PvzNMKYRReLPBhDCthjk91SCUCg6voDmH3sA";
+  const [timeLeft, setTimeLeft] = useState({ hours: 24, minutes: 0, seconds: 0 });
+  const originalPrice = 3;
+  const discountedPrice = 2;
+  const [isDiscountActive, setIsDiscountActive] = useState(true);
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      // Set end time to 24 hours from when the component first mounts
+      const endTime = now + (timeLeft.hours * 3600000 + timeLeft.minutes * 60000 + timeLeft.seconds * 1000);
+      const difference = endTime - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / (1000 * 60)) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      } else {
+        setIsDiscountActive(false);
+        return () => clearInterval(timer);
+      }
+    };
+
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const copyToClipboard = async () => {
     try {
@@ -24,6 +54,8 @@ export const PricingSection = () => {
     }
   };
 
+  const formatTime = (value: number) => value.toString().padStart(2, '0');
+
   return (
     <div id="pricing-section" className="py-20 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-secondary/20 animate-gradient-y"></div>
@@ -37,9 +69,28 @@ export const PricingSection = () => {
           </p>
         </div>
         <Card className="max-w-md mx-auto p-8 bg-background/50 border border-gray-800">
+          {isDiscountActive && (
+            <div className="mb-8 text-center">
+              <div className="bg-primary/10 rounded-lg p-4 mb-4">
+                <p className="text-primary font-bold mb-2">Limited Time Offer!</p>
+                <div className="flex justify-center gap-2 font-mono text-lg">
+                  <span>{formatTime(timeLeft.hours)}h</span>:
+                  <span>{formatTime(timeLeft.minutes)}m</span>:
+                  <span>{formatTime(timeLeft.seconds)}s</span>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="text-center mb-8">
-            <div className="text-primary font-display text-4xl font-bold mb-2">
-              3 SOL
+            <div className="text-primary font-display text-4xl font-bold mb-2 flex items-center justify-center gap-3">
+              {isDiscountActive ? (
+                <>
+                  <span className="text-gray-400 line-through text-2xl">{originalPrice} SOL</span>
+                  <span>{discountedPrice} SOL</span>
+                </>
+              ) : (
+                <span>{originalPrice} SOL</span>
+              )}
             </div>
             <div className="text-sm text-gray-400">Lifetime License</div>
           </div>
