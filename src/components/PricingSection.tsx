@@ -2,6 +2,7 @@ import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { QRCodeSVG } from "qrcode.react";
 
 export const PricingSection = () => {
   const { toast } = useToast();
@@ -56,6 +57,17 @@ export const PricingSection = () => {
             ))}
           </ul>
           <div className="space-y-4">
+            <div className="flex flex-col items-center justify-center mb-6">
+              <div className="bg-white p-4 rounded-lg mb-4">
+                <QRCodeSVG
+                  value={`solana:${solAddress}`}
+                  size={200}
+                  level="H"
+                  includeMargin={true}
+                />
+              </div>
+              <p className="text-sm text-gray-400 mb-4">Scan to pay with Solana</p>
+            </div>
             <div className="p-3 bg-gray-900/50 rounded-lg break-all text-sm text-gray-300">
               {solAddress}
               <button
