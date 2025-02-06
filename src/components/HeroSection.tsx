@@ -43,8 +43,8 @@ export const HeroSection = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left">
-            <div className="flex justify-center md:justify-start gap-4 mb-8">
+          <div className="text-center">
+            <div className="flex justify-center gap-4 mb-8">
               <Button size="lg" className="bg-primary text-background hover:bg-primary/90 animate-fade-in group" onClick={scrollToPricing}>
                 Launch Your Token <Rocket className="ml-2 h-4 w-4 group-hover:animate-bounce" />
               </Button>
