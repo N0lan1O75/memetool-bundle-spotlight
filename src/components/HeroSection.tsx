@@ -24,8 +24,8 @@ export const HeroSection = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-left">
-            <div className="flex gap-4">
+          <div className="text-center md:text-left">
+            <div className="flex justify-center md:justify-start gap-4 mb-8">
               <Button size="lg" className="bg-primary text-background hover:bg-primary/90 animate-fade-in" onClick={scrollToPricing}>
                 Get Started Now <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -33,7 +33,7 @@ export const HeroSection = () => {
                 Watch Demo
               </Button>
             </div>
-            <div className="mt-8 grid grid-cols-3 gap-4">
+            <div className="flex justify-center gap-8">
               {[
                 { label: "Active Users", value: "10k+" },
                 { label: "Bundles Created", value: "50k+" },
