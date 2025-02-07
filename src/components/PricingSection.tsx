@@ -5,6 +5,15 @@ import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { QRCodeSVG } from "qrcode.react";
 import { useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+const formSchema = z.object({
+  email: z.string().email("L'email n'est pas valide"),
+});
 
 export const PricingSection = () => {
   const { toast } = useToast();
@@ -13,6 +22,21 @@ export const PricingSection = () => {
   const originalPrice = 3;
   const discountedPrice = 2;
   const [isDiscountActive, setIsDiscountActive] = useState(true);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    toast({
+      title: "Email enregistré!",
+      description: "Vous recevrez bientôt les détails de votre licence.",
+    });
+    console.log(values);
+  };
 
   useEffect(() => {
     const endTime = new Date();
@@ -29,7 +53,6 @@ export const PricingSection = () => {
           seconds: Math.floor((difference % (1000 * 60)) / 1000),
         });
       } else {
-        // Reset timer when it reaches zero
         endTime.setHours(endTime.getHours() + 24);
       }
     };
@@ -44,13 +67,13 @@ export const PricingSection = () => {
     try {
       await navigator.clipboard.writeText(solAddress);
       toast({
-        title: "Address copied!",
-        description: "The Solana address has been copied to your clipboard.",
+        title: "Adresse copiée!",
+        description: "L'adresse Solana a été copiée dans votre presse-papiers.",
       });
     } catch (err) {
       toast({
-        title: "Failed to copy",
-        description: "Please try copying the address manually.",
+        title: "Échec de la copie",
+        description: "Veuillez essayer de copier l'adresse manuellement.",
         variant: "destructive",
       });
     }
@@ -137,6 +160,33 @@ export const PricingSection = () => {
             ))}
           </ul>
           <div className="space-y-4">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mb-6">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="Entrez votre email"
+                          className="bg-background/80 border-primary/30 placeholder:text-gray-500 text-primary"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-400" />
+                    </FormItem>
+                  )}
+                />
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
+                >
+                  Enregistrer mon email
+                </Button>
+              </form>
+            </Form>
             <div className="flex flex-col items-center justify-center mb-6">
               <div className="bg-white p-4 rounded-lg mb-4 shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
                 <QRCodeSVG
