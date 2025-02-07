@@ -40,7 +40,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        display: ["Clash Display", "sans-serif"],
+        display: ["Sigmar One", "cursive"],
       },
       animation: {
         "gradient-x": "gradient-x 15s ease infinite",
