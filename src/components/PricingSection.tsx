@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const formSchema = z.object({
-  email: z.string().email("L'email n'est pas valide"),
+  email: z.string().email("Invalid email address"),
 });
 
 export const PricingSection = () => {
@@ -32,8 +32,8 @@ export const PricingSection = () => {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     toast({
-      title: "Email enregistré!",
-      description: "Vous recevrez bientôt les détails de votre licence.",
+      title: "Email registered!",
+      description: "You will receive your license details soon.",
     });
     console.log(values);
   };
@@ -67,13 +67,13 @@ export const PricingSection = () => {
     try {
       await navigator.clipboard.writeText(solAddress);
       toast({
-        title: "Adresse copiée!",
-        description: "L'adresse Solana a été copiée dans votre presse-papiers.",
+        title: "Address copied!",
+        description: "The Solana address has been copied to your clipboard.",
       });
     } catch (err) {
       toast({
-        title: "Échec de la copie",
-        description: "Veuillez essayer de copier l'adresse manuellement.",
+        title: "Failed to copy",
+        description: "Please try copying the address manually.",
         variant: "destructive",
       });
     }
@@ -170,7 +170,7 @@ export const PricingSection = () => {
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="Entrez votre email"
+                          placeholder="Enter your email"
                           className="bg-background/80 border-primary/30 placeholder:text-gray-500 text-primary"
                           {...field}
                         />
@@ -183,7 +183,7 @@ export const PricingSection = () => {
                   type="submit" 
                   className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
                 >
-                  Enregistrer mon email
+                  Register Email
                 </Button>
               </form>
             </Form>
