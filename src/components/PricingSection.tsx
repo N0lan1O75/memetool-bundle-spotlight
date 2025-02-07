@@ -38,6 +38,8 @@ export const PricingSection = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const formatTime = (value: number) => value.toString().padStart(2, '0');
+
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(solAddress);
@@ -53,8 +55,6 @@ export const PricingSection = () => {
       });
     }
   };
-
-  const formatTime = (value: number) => value.toString().padStart(2, '0');
 
   return (
     <div id="pricing-section" className="py-20 bg-background relative overflow-hidden">
