@@ -3,7 +3,7 @@ import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CountdownTimer } from "./pricing/CountdownTimer";
 import { PaymentQRCode } from "./pricing/PaymentQRCode";
 import { EmailRegistrationForm } from "./pricing/EmailRegistrationForm";
@@ -16,8 +16,31 @@ export const PricingSection = () => {
   const originalPrice = 3;
   const discountedPrice = 2;
   const [isDiscountActive] = useState(true);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
 
   const formatTime = (value: number) => value.toString().padStart(2, '0');
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateXValue = ((y - centerY) / centerY) * -10;
+    const rotateYValue = ((x - centerX) / centerX) * 10;
+    
+    setRotateX(rotateXValue);
+    setRotateY(rotateYValue);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
 
   const copyToClipboard = async () => {
     try {
@@ -47,13 +70,21 @@ export const PricingSection = () => {
             Get access to all bundle and rug tools
           </p>
         </div>
-        <Card className="max-w-md mx-auto p-8 bg-background/50 backdrop-blur-sm border border-gray-800 
-          hover:border-primary/50 transition-all duration-500 transform hover:scale-105
-          hover:shadow-[0_0_30px_rgba(94,234,212,0.3)] hover:bg-gradient-to-br hover:from-background 
-          hover:to-primary/5 group relative before:absolute before:inset-0 before:rounded-lg 
-          before:border before:border-primary/0 before:transition-all hover:before:border-primary/50 
-          before:duration-500 before:scale-[1.01] hover:before:scale-105 before:opacity-0 
-          hover:before:opacity-100 before:pointer-events-none">
+        <Card 
+          className="max-w-md mx-auto p-8 bg-background/50 backdrop-blur-sm border border-gray-800 
+            hover:border-primary/50 transition-all duration-500 transform hover:scale-105
+            hover:shadow-[0_0_30px_rgba(94,234,212,0.3)] hover:bg-gradient-to-br hover:from-background 
+            hover:to-primary/5 group relative before:absolute before:inset-0 before:rounded-lg 
+            before:border before:border-primary/0 before:transition-all hover:before:border-primary/50 
+            before:duration-500 before:scale-[1.01] hover:before:scale-105 before:opacity-0 
+            hover:before:opacity-100 before:pointer-events-none perspective-1000"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
           {isDiscountActive && (
             <div className="mb-8 text-center">
               <div className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-6 mb-4 
