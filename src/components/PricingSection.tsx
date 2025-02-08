@@ -8,6 +8,7 @@ import { CountdownTimer } from "./pricing/CountdownTimer";
 import { PaymentQRCode } from "./pricing/PaymentQRCode";
 import { EmailRegistrationForm } from "./pricing/EmailRegistrationForm";
 import { PricingFeatures } from "./pricing/PricingFeatures";
+import { PhantomWalletButton } from "./pricing/PhantomWalletButton";
 
 export const PricingSection = () => {
   const { toast } = useToast();
@@ -98,14 +99,10 @@ export const PricingSection = () => {
                 <Copy className="h-4 w-4" />
               </button>
             </div>
-            <Button className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 group">
-              Get License
-              <img 
-                src="https://cryptologos.cc/logos/solana-sol-logo.png" 
-                alt="SOL" 
-                className="w-6 h-6 ml-2 group-hover:animate-spin" 
-              />
-            </Button>
+            <PhantomWalletButton 
+              amount={isDiscountActive ? discountedPrice : originalPrice} 
+              recipientAddress={solAddress}
+            />
           </div>
         </Card>
       </div>
