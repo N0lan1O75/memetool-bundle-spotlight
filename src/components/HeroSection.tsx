@@ -1,3 +1,4 @@
+
 import { ArrowRight, Rocket, Coins, Package, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -45,11 +46,29 @@ export const HeroSection = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center">
             <div className="flex justify-center gap-4 mb-8">
-              <Button size="lg" className="bg-primary text-background hover:bg-primary/90 animate-fade-in group" onClick={scrollToPricing}>
-                Launch Your Token <Rocket className="ml-2 h-4 w-4 group-hover:animate-bounce" />
+              <Button 
+                size="lg" 
+                className="bg-primary text-background relative overflow-hidden transition-all duration-300
+                  before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-150%] before:skew-x-[-45deg] before:transition-transform
+                  hover:before:translate-x-[150%] before:duration-700
+                  hover:shadow-[0_0_20px_rgba(94,234,212,0.5)] hover:scale-105 active:scale-95
+                  animate-fade-in group"
+                onClick={scrollToPricing}
+              >
+                Launch Your Token 
+                <Rocket className="ml-2 h-4 w-4 group-hover:animate-bounce transition-transform duration-300 ease-in-out" />
               </Button>
-              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                View Examples <Package className="ml-2 h-4 w-4" />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary text-primary relative overflow-hidden
+                  before:absolute before:inset-0 before:bg-primary/10 before:translate-x-[-150%] before:skew-x-[-45deg] before:transition-transform
+                  hover:before:translate-x-[150%] before:duration-700
+                  hover:border-primary/80 hover:text-primary/80 hover:scale-105 active:scale-95
+                  transition-all duration-300"
+              >
+                View Examples 
+                <Package className="ml-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
               </Button>
             </div>
             <div className="flex justify-center gap-8">
