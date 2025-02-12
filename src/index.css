@@ -1,3 +1,4 @@
+
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -15,7 +16,11 @@
 @layer utilities {
   .perspective-1000 {
     perspective: 1000px;
+  }
+  
+  .preserve-3d {
     transform-style: preserve-3d;
+    backface-visibility: hidden;
   }
 }
 
