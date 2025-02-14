@@ -67,20 +67,20 @@ export const PricingSection = () => {
   };
 
   return (
-    <div id="pricing-section" className="py-20 bg-background relative overflow-hidden">
+    <div id="pricing-section" className="py-12 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-secondary/20 animate-gradient-y"></div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-3">
             Simple Pricing
           </h2>
           <p className="text-gray-400">
             Get access to all bundle and rug tools
           </p>
         </div>
-        <div className="max-w-md mx-auto perspective-1000">
+        <div className="max-w-lg mx-auto perspective-1000">
           <Card 
-            className="p-8 bg-background/50 backdrop-blur-sm border border-gray-800 
+            className="p-6 bg-background/50 backdrop-blur-sm border border-gray-800 
               transition-all duration-500 ease-out transform hover:scale-[1.02]
               hover:shadow-[0_0_30px_rgba(94,234,212,0.3)] 
               hover:bg-gradient-to-br hover:from-background hover:to-primary/5 
@@ -89,8 +89,7 @@ export const PricingSection = () => {
               before:duration-500 before:ease-out hover:before:border-primary/50 
               before:scale-[1.01] hover:before:scale-105 before:opacity-0 
               hover:before:opacity-100 before:pointer-events-none will-change-transform
-              hover:border-primary/50 bg-center bg-[length:200%_200%]
-              hover:bg-right-bottom"
+              hover:border-primary/50"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{
@@ -100,11 +99,11 @@ export const PricingSection = () => {
             }}
           >
             {isDiscountActive && (
-              <div className="mb-8 text-center">
-                <div className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-6 mb-4 
+              <div className="mb-6 text-center">
+                <div className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-4 mb-4 
                   shadow-lg backdrop-blur-sm transition-all duration-300 hover:from-primary/30 
                   hover:to-secondary/30 hover:shadow-[0_0_20px_rgba(155,135,245,0.3)]">
-                  <p className="text-primary font-bold mb-4 text-xl bg-clip-text text-transparent 
+                  <p className="text-primary font-bold mb-3 text-lg bg-clip-text text-transparent 
                     bg-gradient-to-r from-primary to-secondary animate-pulse group-hover:animate-none
                     group-hover:from-primary group-hover:to-secondary/80">
                     🔥 Limited Time Offer! 🔥
@@ -113,7 +112,7 @@ export const PricingSection = () => {
                 </div>
               </div>
             )}
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               <div className="text-primary font-display text-4xl font-bold mb-2 flex items-center 
                 justify-center gap-3 transition-transform duration-300 group-hover:scale-110">
                 {isDiscountActive ? (
@@ -147,10 +146,10 @@ export const PricingSection = () => {
             </div>
             
             <PricingFeatures />
-            <div className="space-y-4">
+            <div className="space-y-3">
               <EmailRegistrationForm />
               <PaymentQRCode address={solAddress} />
-              <div className="p-3 bg-gray-900/50 backdrop-blur-sm rounded-lg break-all text-sm 
+              <div className="p-2.5 bg-gray-900/50 backdrop-blur-sm rounded-lg break-all text-sm 
                 text-gray-300 hover:bg-gray-900/70 transition-all duration-300 
                 hover:shadow-[0_0_15px_rgba(94,234,212,0.2)] group-hover:border-primary/30 
                 border border-transparent">
