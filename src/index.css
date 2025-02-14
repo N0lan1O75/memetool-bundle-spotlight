@@ -24,6 +24,42 @@
   }
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(-20px) rotate(45deg); }
+}
+
+@keyframes flame {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s infinite;
+}
+
+.animate-float {
+  animation: float 6s infinite;
+}
+
+.animate-flame {
+  animation: flame 0.5s infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
 .gradient-border {
   position: relative;
   border: double 1px transparent;
