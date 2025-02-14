@@ -89,12 +89,13 @@ export const PricingSection = () => {
               before:duration-500 before:ease-out hover:before:border-primary/50 
               before:scale-[1.01] hover:before:scale-105 before:opacity-0 
               hover:before:opacity-100 before:pointer-events-none will-change-transform
-              hover:border-primary/50"
+              hover:border-primary/50 bg-center bg-[length:200%_200%]
+              hover:bg-right-bottom"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{
               transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-              transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67)',
+              transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
               backgroundImage: `radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(94,234,212,0.1) 0%, rgba(94,234,212,0) 50%)`,
             }}
           >
