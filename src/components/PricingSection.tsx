@@ -81,6 +81,9 @@ export const PricingSection = () => {
         <div className="max-w-md mx-auto perspective-1000">
           <Card 
             className="p-8 bg-background/50 backdrop-blur-sm border border-gray-800 
+              transition-all duration-500 ease-out transform hover:scale-[1.02]
+              hover:shadow-[0_0_30px_rgba(94,234,212,0.3)] 
+              hover:bg-gradient-to-br hover:from-background hover:to-primary/5 
               group relative before:absolute before:inset-0 before:rounded-lg 
               before:border before:border-primary/0 before:transition-all 
               before:duration-500 before:ease-out hover:before:border-primary/50 
@@ -93,17 +96,6 @@ export const PricingSection = () => {
               transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
               transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
               backgroundImage: `radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(94,234,212,0.1) 0%, rgba(94,234,212,0) 50%)`,
-              scale: '1',
-              boxShadow: '0 0 0 rgba(94,234,212,0)',
-              backgroundPosition: 'center',
-              backgroundSize: '200% 200%',
-              '@media (hover: hover)': {
-                '&:hover': {
-                  scale: '1.02',
-                  boxShadow: '0 0 30px rgba(94,234,212,0.3)',
-                  backgroundPosition: 'right bottom',
-                }
-              }
             }}
           >
             {isDiscountActive && (
