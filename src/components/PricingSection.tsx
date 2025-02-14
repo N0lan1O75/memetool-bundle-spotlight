@@ -89,7 +89,8 @@ export const PricingSection = () => {
               before:duration-500 before:ease-out hover:before:border-primary/50 
               before:scale-[1.01] hover:before:scale-105 before:opacity-0 
               hover:before:opacity-100 before:pointer-events-none will-change-transform
-              hover:border-primary/50"
+              hover:border-primary/50 bg-center bg-[length:200%_200%]
+              hover:bg-right-bottom"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{
