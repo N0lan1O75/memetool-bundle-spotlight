@@ -1,4 +1,3 @@
-
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -70,19 +69,23 @@ export const PricingSection = () => {
   return (
     <div id="pricing-section" className="py-8 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-secondary/20 animate-gradient-y"></div>
-      {/* Ajout de trèfles décoratifs flottants */}
+      {/* Trèfles décoratifs flottants */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute animate-float"
+            className="absolute animate-fade-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`
+              animationDelay: `${i * 0.8}s`,
+              fontSize: `${Math.random() * (2.5 - 1.5) + 1.5}rem`
             }}
           >
-            <span className="text-2xl animate-shamrock inline-block text-primary/30">☘️</span>
+            <span className="text-2xl inline-block text-primary/30 animate-float"
+                  style={{ animationDelay: `${i * -0.5}s` }}>
+              ☘️
+            </span>
           </div>
         ))}
       </div>
