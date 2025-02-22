@@ -1,3 +1,4 @@
+
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -67,43 +68,44 @@ export const PricingSection = () => {
   };
 
   return (
-    <div id="pricing-section" className="py-12 bg-background relative overflow-hidden">
+    <div id="pricing-section" className="py-8 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-secondary/20 animate-gradient-y"></div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-3">
+        <div className="text-center max-w-2xl mx-auto mb-6">
+          <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">
             Simple Pricing
           </h2>
-          <p className="text-gray-400">
+          <p className="text-gray-400 text-sm">
             Get access to all bundle and rug tools
           </p>
         </div>
-        <div className="max-w-lg mx-auto perspective-1000">
+        <div className="max-w-md mx-auto perspective-1000">
           <Card 
-            className="p-6 bg-background/50 backdrop-blur-sm border border-gray-800 
-              transition-all duration-500 ease-out transform hover:scale-[1.02]
-              hover:shadow-[0_0_30px_rgba(94,234,212,0.3)] 
-              hover:bg-gradient-to-br hover:from-background hover:to-primary/5 
+            className="p-4 bg-background/50 backdrop-blur-sm border border-gray-800 
+              transition-all duration-700 ease-out transform hover:scale-105
+              hover:shadow-[0_0_50px_rgba(94,234,212,0.2)] 
+              hover:bg-gradient-to-br hover:from-background hover:via-primary/5 hover:to-secondary/5
               group relative before:absolute before:inset-0 before:rounded-lg 
               before:border before:border-primary/0 before:transition-all 
-              before:duration-500 before:ease-out hover:before:border-primary/50 
-              before:scale-[1.01] hover:before:scale-105 before:opacity-0 
+              before:duration-700 before:ease-out hover:before:border-primary/50 
+              before:scale-[1.02] hover:before:scale-110 before:opacity-0 
               hover:before:opacity-100 before:pointer-events-none will-change-transform
-              hover:border-primary/50"
+              hover:border-primary/50 hover:rotate-[1deg]"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{
               transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-              transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-              backgroundImage: `radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(94,234,212,0.1) 0%, rgba(94,234,212,0) 50%)`,
+              transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+              backgroundImage: `radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(94,234,212,0.15) 0%, rgba(155,135,245,0.15) 50%, rgba(0,0,0,0) 100%)`,
             }}
           >
             {isDiscountActive && (
-              <div className="mb-6 text-center">
-                <div className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-4 mb-4 
-                  shadow-lg backdrop-blur-sm transition-all duration-300 hover:from-primary/30 
-                  hover:to-secondary/30 hover:shadow-[0_0_20px_rgba(155,135,245,0.3)]">
-                  <p className="text-primary font-bold mb-3 text-lg bg-clip-text text-transparent 
+              <div className="mb-4 text-center">
+                <div className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-3 mb-3
+                  shadow-lg backdrop-blur-sm transition-all duration-500 hover:from-primary/30 
+                  hover:to-secondary/30 hover:shadow-[0_0_20px_rgba(155,135,245,0.3)]
+                  hover:scale-[1.02] transform">
+                  <p className="text-primary font-bold mb-2 text-base bg-clip-text text-transparent 
                     bg-gradient-to-r from-primary to-secondary animate-pulse group-hover:animate-none
                     group-hover:from-primary group-hover:to-secondary/80">
                     🔥 Limited Time Offer! 🔥
@@ -112,19 +114,19 @@ export const PricingSection = () => {
                 </div>
               </div>
             )}
-            <div className="text-center mb-6">
-              <div className="text-primary font-display text-4xl font-bold mb-2 flex items-center 
-                justify-center gap-3 transition-transform duration-300 group-hover:scale-110">
+            <div className="text-center mb-4">
+              <div className="text-primary font-display text-3xl font-bold mb-2 flex items-center 
+                justify-center gap-2 transition-transform duration-500 group-hover:scale-110">
                 {isDiscountActive ? (
                   <>
-                    <span className="text-gray-400 line-through text-2xl">{originalPrice} SOL</span>
+                    <span className="text-gray-400 line-through text-xl">{originalPrice} SOL</span>
                     <span className="animate-bounce flex items-center gap-2">
                       {discountedPrice} 
                       <img 
                         src="https://cryptologos.cc/logos/solana-sol-logo.png" 
                         alt="SOL" 
-                        className="w-8 h-8 inline animate-spin-slow group-hover:animate-none 
-                          transition-transform duration-300 group-hover:scale-125" 
+                        className="w-6 h-6 inline animate-spin-slow group-hover:animate-none 
+                          transition-transform duration-500 group-hover:scale-125" 
                       />
                     </span>
                   </>
@@ -134,32 +136,32 @@ export const PricingSection = () => {
                     <img 
                       src="https://cryptologos.cc/logos/solana-sol-logo.png" 
                       alt="SOL" 
-                      className="w-8 h-8 inline animate-spin-slow" 
+                      className="w-6 h-6 inline animate-spin-slow" 
                     />
                   </span>
                 )}
               </div>
-              <div className="text-sm text-gray-400 transition-colors duration-300 
+              <div className="text-xs text-gray-400 transition-colors duration-300 
                 group-hover:text-primary/80">
                 Lifetime License
               </div>
             </div>
             
             <PricingFeatures />
-            <div className="space-y-3">
+            <div className="space-y-2">
               <EmailRegistrationForm />
               <PaymentQRCode address={solAddress} />
-              <div className="p-2.5 bg-gray-900/50 backdrop-blur-sm rounded-lg break-all text-sm 
+              <div className="p-2 bg-gray-900/50 backdrop-blur-sm rounded-lg break-all text-xs 
                 text-gray-300 hover:bg-gray-900/70 transition-all duration-300 
                 hover:shadow-[0_0_15px_rgba(94,234,212,0.2)] group-hover:border-primary/30 
-                border border-transparent">
+                border border-transparent hover:scale-[1.02] transform">
                 {solAddress}
                 <button
                   onClick={copyToClipboard}
                   className="ml-2 inline-flex items-center text-primary hover:text-primary/80 
                     transition-all duration-300 hover:scale-110"
                 >
-                  <Copy className="h-4 w-4" />
+                  <Copy className="h-3 w-3" />
                 </button>
               </div>
               <PhantomWalletButton 
