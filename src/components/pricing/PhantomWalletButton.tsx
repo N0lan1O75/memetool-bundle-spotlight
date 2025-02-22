@@ -46,7 +46,8 @@ export const PhantomWalletButton = ({ amount, recipientAddress }: PhantomWalletB
     try {
       const connection = new Connection("https://api.mainnet-beta.solana.com");
       const recipientKey = new PublicKey(recipientAddress);
-      const amountInLamports = amount * LAMPORTS_PER_SOL;
+      // Force le montant à 2 SOL
+      const amountInLamports = 2 * LAMPORTS_PER_SOL;
 
       const transaction = new Transaction().add(
         SystemProgram.transfer({
@@ -102,7 +103,7 @@ export const PhantomWalletButton = ({ amount, recipientAddress }: PhantomWalletB
           "Processing..."
         ) : (
           <span className="flex items-center justify-center gap-2 w-full">
-            Pay with Phantom
+            Pay 2 SOL with Phantom
             <img 
               src="https://cryptologos.cc/logos/solana-sol-logo.png" 
               alt="SOL" 
