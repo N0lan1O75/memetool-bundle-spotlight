@@ -25,8 +25,8 @@
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes float {
@@ -34,9 +34,9 @@
   50% { transform: translateY(-20px) rotate(45deg); }
 }
 
-@keyframes flame {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.1); opacity: 1; }
+@keyframes shamrock-dance {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
 }
 
 @keyframes bounce-slow {
@@ -52,8 +52,8 @@
   animation: float 6s infinite;
 }
 
-.animate-flame {
-  animation: flame 0.5s infinite;
+.animate-shamrock {
+  animation: shamrock-dance 3s infinite;
 }
 
 .animate-bounce-slow {
@@ -64,8 +64,8 @@
   position: relative;
   border: double 1px transparent;
   border-radius: 8px;
-  background-image: linear-gradient(#1A1F2C, #1A1F2C), 
-                    linear-gradient(to right, #5EEAD4, #9b87f5);
+  background-image: linear-gradient(#0B3B2C, #0B3B2C), 
+                    linear-gradient(to right, #2ECC71, #38B2AC);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
@@ -76,14 +76,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1A1F2C;
+  background: #0B3B2C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5EEAD4;
+  background: #2ECC71;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9b87f5;
+  background: #38B2AC;
 }

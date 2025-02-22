@@ -70,23 +70,39 @@ export const PricingSection = () => {
   return (
     <div id="pricing-section" className="py-8 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-secondary/20 animate-gradient-y"></div>
+      {/* Ajout de trèfles décoratifs flottants */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.5}s`
+            }}
+          >
+            <span className="text-2xl animate-shamrock inline-block text-primary/30">☘️</span>
+          </div>
+        ))}
+      </div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-6">
-          <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">
+          <h2 className="text-2xl md:text-3xl font-display font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Simple Pricing
           </h2>
-          <p className="text-gray-400 text-sm">
+          <p className="text-primary/80 text-sm">
             Get access to all bundle and rug tools
           </p>
         </div>
         <div className="max-w-md mx-auto perspective-1000">
           <Card 
-            className="p-4 bg-background/50 backdrop-blur-sm border border-gray-800 
+            className="p-4 bg-background/50 backdrop-blur-sm border-2 border-primary/30
               transition-all duration-700 ease-out transform hover:scale-105
-              hover:shadow-[0_0_50px_rgba(94,234,212,0.2)] 
+              hover:shadow-[0_0_50px_rgba(46,204,113,0.2)] 
               hover:bg-gradient-to-br hover:from-background hover:via-primary/5 hover:to-secondary/5
               group relative before:absolute before:inset-0 before:rounded-lg 
-              before:border before:border-primary/0 before:transition-all 
+              before:border-2 before:border-primary/0 before:transition-all 
               before:duration-700 before:ease-out hover:before:border-primary/50 
               before:scale-[1.02] hover:before:scale-110 before:opacity-0 
               hover:before:opacity-100 before:pointer-events-none will-change-transform
@@ -96,7 +112,7 @@ export const PricingSection = () => {
             style={{
               transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
               transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
-              backgroundImage: `radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(94,234,212,0.15) 0%, rgba(155,135,245,0.15) 50%, rgba(0,0,0,0) 100%)`,
+              backgroundImage: `radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(46,204,113,0.15) 0%, rgba(56,178,172,0.15) 50%, rgba(0,0,0,0) 100%)`,
             }}
           >
             {isDiscountActive && (
