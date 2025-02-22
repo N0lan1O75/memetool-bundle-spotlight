@@ -82,7 +82,7 @@ export const PhantomWalletButton = ({ amount, recipientAddress }: PhantomWalletB
   if (!phantom) {
     return (
       <Button
-        className="w-full bg-primary text-background hover:bg-primary/90"
+        className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300"
         onClick={() => window.open("https://phantom.app/", "_blank")}
       >
         Install Phantom Wallet
@@ -91,24 +91,30 @@ export const PhantomWalletButton = ({ amount, recipientAddress }: PhantomWalletB
   }
 
   return (
-    <Button
-      className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 group"
-      onClick={handlePayment}
-      disabled={loading}
-    >
-      {loading ? (
-        "Processing..."
-      ) : (
-        <>
-          Pay with Phantom
-          <img 
-            src="https://cryptologos.cc/logos/solana-sol-logo.png" 
-            alt="SOL" 
-            className="w-6 h-6 ml-2 group-hover:animate-spin" 
-          />
-        </>
-      )}
-    </Button>
+    <div className="relative overflow-hidden rounded-md">
+      <Button
+        className="w-full bg-primary text-background hover:bg-primary/90 transition-all duration-300 
+          relative z-10 group"
+        onClick={handlePayment}
+        disabled={loading}
+      >
+        {loading ? (
+          "Processing..."
+        ) : (
+          <span className="flex items-center justify-center gap-2 w-full">
+            Pay with Phantom
+            <img 
+              src="https://cryptologos.cc/logos/solana-sol-logo.png" 
+              alt="SOL" 
+              className="w-6 h-6 group-hover:animate-spin" 
+            />
+          </span>
+        )}
+      </Button>
+      <div 
+        className="absolute inset-0 bg-gradient-to-r from-primary/40 to-secondary/40 
+          blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+      />
+    </div>
   );
 };
-
