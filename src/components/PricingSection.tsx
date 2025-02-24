@@ -1,13 +1,15 @@
+
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CountdownTimer } from "./pricing/CountdownTimer";
 import { PaymentQRCode } from "./pricing/PaymentQRCode";
 import { EmailRegistrationForm } from "./pricing/EmailRegistrationForm";
 import { PricingFeatures } from "./pricing/PricingFeatures";
 import { PhantomWalletButton } from "./pricing/PhantomWalletButton";
+import { ReviewsSection } from "./pricing/ReviewsSection";
 
 export const PricingSection = () => {
   const { toast } = useToast();
@@ -139,7 +141,7 @@ export const PricingSection = () => {
                 {isDiscountActive ? (
                   <>
                     <span className="text-gray-400 line-through text-xl">{originalPrice} SOL</span>
-                    <span className="animate-bounce flex items-center gap-2">
+                    <span className="animate-bounce-slow flex items-center gap-2">
                       {discountedPrice} 
                       <img 
                         src="https://cryptologos.cc/logos/solana-sol-logo.png" 
@@ -167,7 +169,10 @@ export const PricingSection = () => {
             </div>
             
             <PricingFeatures />
-            <div className="space-y-2">
+            
+            <ReviewsSection />
+            
+            <div className="space-y-2 mt-6">
               <EmailRegistrationForm />
               <PaymentQRCode address={solAddress} />
               <div className="p-2 bg-gray-900/50 backdrop-blur-sm rounded-lg break-all text-xs 
